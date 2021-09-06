@@ -1,7 +1,6 @@
-let mapleader = ","
-syntax on
 set encoding=utf-8
-
+let mapleader=","
+syntax on
 set pastetoggle=<F2>
 set nocompatible 
 set cursorline
@@ -11,9 +10,10 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set hlsearch
-
+set noerrorbells
 set clipboard=unnamed
 
+set nu
 set rnu
 set noswapfile
 set nobackup
@@ -29,6 +29,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'sheerun/vim-polyglot'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 colorscheme gruvbox
@@ -36,7 +39,7 @@ set background=dark
 let g:gruvbox_contrast_dark="hard"
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-
+nnoremap <leader>q :!clear && python3 %<cr>
 nnoremap <Leader>x :!node % <cr>
  " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -59,3 +62,14 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <leader>pv : wincmd v<bar> :Ex <bar> :vertical resize 30<cr>
+nnoremap <leader>+ :vertical resize +5<cr>
+nnoremap <leader>- :vertical resize -5<cr>
+nnoremap <leader>rp :resize 100<cr>
+
+nmap <leader>gh :diffget //3<cr>
+nmap <leader>gu :diffget //2<cr>
+nmap <leader>gs :G<cr>
+
+
