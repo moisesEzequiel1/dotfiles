@@ -1,0 +1,9 @@
+map e $&nvim "$Env:f"
+map i !&more "$Env:f"
+map w $&pwsh
+cmd help !&lf -doc | !&more
+cmd maps !&lf -remote "query $Env:id maps" | !&more
+cmd nmaps !&lf -remote "query $Env:id nmaps" | !&more
+cmd vmaps !&lf -remote "query $Env:id vmaps" | !&more
+cmd cmaps !&lf -remote "query $Env:id cmaps" | !&more
+cmd cmds !&lf -remote "query $Env:id cmds" | !&more
