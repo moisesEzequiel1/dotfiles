@@ -46,6 +46,25 @@ autocmd({"BufWritePre"}, {
     command = [[%s/\s\+$//e]],
 })
 
+local ts_lang_by_ft = {
+    c = "c",
+    cpp = "cpp",
+    lua = "lua",
+    python = "python",
+    rust = "rust",
+}
+
+autocmd("FileType", {
+    group = moisesezequiel,
+    pattern = vim.tbl_keys(ts_lang_by_ft),
+    callback = function(ev)
+        local lang = ts_lang_by_ft[ev.match]
+        if lang then
+            pcall(vim.treesitter.start, ev.buf, lang)
+        end
+    end,
+})
+
 autocmd('BufEnter', {
     group = moisesezequiel,
     callback = function()
