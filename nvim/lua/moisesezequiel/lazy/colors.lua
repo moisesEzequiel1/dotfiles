@@ -1,6 +1,22 @@
+local function ApplyWindowContrast()
+    -- Stronger active/inactive split contrast.
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "#282828" })
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#7c6f64", bg = "#282828", bold = true })
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3c3836" })
+    vim.api.nvim_set_hl(0, "CursorLineNC", { bg = "#32302f" })
+end
+
+local colors_augroup = vim.api.nvim_create_augroup("moisesezequiel_colors", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = colors_augroup,
+    pattern = "*",
+    callback = ApplyWindowContrast,
+})
+
 function ColorMyPencils(color)
 	color = color or "gruvbox"
 	vim.cmd.colorscheme(color)
+    ApplyWindowContrast()
 end
 
 return {
