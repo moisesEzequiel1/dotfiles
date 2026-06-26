@@ -16,18 +16,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "=ap", "ma=ap'a")
 vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
-vim.keymap.set("n", "<leader>vwm", function()
-    local ok, vwm = pcall(require, "vim-with-me")
-    if ok then
-        vwm.StartVimWithMe()
-    end
-end)
-vim.keymap.set("n", "<leader>svwm", function()
-    local ok, vwm = pcall(require, "vim-with-me")
-    if ok then
-        vwm.StopVimWithMe()
-    end
-end)
 vim.keymap.set("n", "<leader>lt", function()
     vim.cmd [[ PlenaryBustedFile % ]]
 end)

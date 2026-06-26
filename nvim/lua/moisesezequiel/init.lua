@@ -65,18 +65,6 @@ autocmd("FileType", {
     end,
 })
 
-autocmd('BufEnter', {
-    group = moisesezequiel,
-    callback = function()
-        if vim.bo.filetype == "zig" then
-            pcall(vim.cmd.colorscheme, "tokyonight-night")
-        else
-            pcall(vim.cmd.colorscheme, "rose-pine-moon")
-        end
-    end
-})
-
-
 autocmd('LspAttach', {
     group = moisesezequiel,
     callback = function(e)
@@ -93,6 +81,12 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
     end
 })
+
+vim.api.nvim_create_user_command("TSNativeInstall", function(opts)
+    local installer = require("moisesezequiel.tools.install_parsers")
+    local list = (#opts.fargs > 0) and opts.fargs or installer.default_parsers
+    installer.install(list)
+end, { nargs = "*" })
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
